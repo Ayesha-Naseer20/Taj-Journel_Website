@@ -5,12 +5,12 @@ import { ShieldCheck, Award, Globe, ExternalLink } from 'lucide-react';
 
 export default function IndexedInPage() {
   const indexings = [
-    { name: "DOAJ (Directory of Open Access Journals)", type: "International Database", status: "Active Indexed", desc: "Verified open access quality peer review compliance." },
-    { name: "Higher Education Commission (HEC) Pakistan", type: "National Accreditation", status: "Y Category Recognized", desc: "Official recognition by HEC Pakistan for academic appointments & research grants." },
-    { name: "Crossref DOI", type: "Digital Object Identifier", status: "Active Member", desc: "Permanent DOI assigned to all published research articles." },
-    { name: "Google Scholar", type: "Citation Indexing", status: "Indexed", desc: "Full text index and citation analytics tracking." },
-    { name: "Tehqeeqat", type: "Pakistani Research Journals Index", status: "Indexed", desc: "National database of humanities and Islamic studies research journals." },
-    { name: "BASE (Bielefeld Academic Search Engine)", type: "Search Engine", status: "Indexed", desc: "Operated by Bielefeld University Library, Germany." }
+    { name: "DOAJ (Directory of Open Access Journals)", type: "International Database", status: "In Process", desc: "Application for inclusion in the Directory of Open Access Journals is in process." },
+    { name: "Higher Education Commission (HEC) Pakistan", type: "National Accreditation", status: "In Process", desc: "Application for HEC Pakistan recognition has been submitted and is in process." },
+    { name: "Crossref DOI", type: "Digital Object Identifier", status: "In Process", desc: "Crossref membership for DOI assignment to published articles is in process." },
+    { name: "Google Scholar", type: "Citation Indexing", status: "In Process", desc: "Full text index and citation analytics tracking." },
+    { name: "Tehqeeqat", type: "Pakistani Research Journals Index", status: "In Process", desc: "National database of humanities and Islamic studies research journals." },
+    { name: "BASE (Bielefeld Academic Search Engine)", type: "Search Engine", status: "In Process", desc: "Operated by Bielefeld University Library, Germany." }
   ];
 
   return (
@@ -32,13 +32,13 @@ export default function IndexedInPage() {
               
               <div className="border-b border-slate-100 pb-4">
                 <span className="px-2.5 py-0.5 text-[10px] font-bold bg-amber-500 text-slate-950 rounded uppercase">
-                  Global Abstracting & Indexing
+                  Abstracting & Indexing • In Process
                 </span>
                 <h1 className="font-serif text-3xl font-extrabold text-journal-navy mt-1">
                   Indexing & Academic Accreditation
                 </h1>
                 <p className="text-xs text-slate-500 mt-1">
-                  Al-Basirah is indexed in major international scholarly repositories and abstracting services.
+                  Taj Journal of Religion and Psychology (TJRP) has applied for inclusion in the following national and international indexing and abstracting services. All applications are currently in process.
                 </p>
               </div>
 
@@ -46,7 +46,7 @@ export default function IndexedInPage() {
                 {indexings.map((idx, i) => (
                   <div key={i} className="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-2 hover:border-amber-400 hover:shadow-sm transition-all">
                     <div className="flex justify-between items-center">
-                      <span className="px-2 py-0.5 text-[10px] font-bold bg-emerald-100 text-emerald-800 rounded">
+                      <span className="px-2 py-0.5 text-[10px] font-bold bg-amber-100 text-amber-800 rounded">
                         {idx.status}
                       </span>
                       <span className="text-[10px] text-slate-400">{idx.type}</span>

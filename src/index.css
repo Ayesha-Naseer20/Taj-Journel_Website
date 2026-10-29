@@ -58,6 +58,39 @@
 }
 
 /* ==========================================================================
+   JAMEEL NOORI NASTALEEQ WEB FONT & URDU TYPOGRAPHY
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Jameel Noori Nastaleeq';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Jameel Noori Nastaleeq'),
+       local('JameelNooriNastaleeq'),
+       url('https://cdn.jsdelivr.net/npm/jameel-noori/fonts/jameel-noori-nastaleeq4.woff2') format('woff2'),
+       url('https://fonts.cdnfonts.com/s/149204/JameelNooriNastaleeqRegular.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JameelNooriNastaliq';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Jameel Noori Nastaleeq'),
+       local('JameelNooriNastaleeq'),
+       url('https://cdn.jsdelivr.net/npm/jameel-noori/fonts/jameel-noori-nastaleeq4.woff2') format('woff2'),
+       url('https://fonts.cdnfonts.com/s/149204/JameelNooriNastaleeqRegular.woff') format('woff');
+  font-display: swap;
+}
+
+.font-urdu {
+  font-family: 'Jameel Noori Nastaleeq', 'JameelNooriNastaliq', 'Noto Nastaliq Urdu', serif !important;
+  direction: rtl;
+  letter-spacing: 0;
+  word-spacing: 1px;
+}
+
+/* ==========================================================================
    REFINED SCROLLBAR (Thinner, auto-hiding feel)
    ========================================================================== */
 

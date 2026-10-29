@@ -12,7 +12,9 @@ export default function SearchModal({ isOpen, onClose, onSelectArticle }) {
     const matchesQuery = query === '' || 
       art.title.toLowerCase().includes(query.toLowerCase()) ||
       (art.titleEnglish && art.titleEnglish.toLowerCase().includes(query.toLowerCase())) ||
-      art.abstract.toLowerCase().includes(query.toLowerCase()) ||
+      (art.abstract && art.abstract.toLowerCase().includes(query.toLowerCase())) ||
+      (art.journal && art.journal.toLowerCase().includes(query.toLowerCase())) ||
+      String(art.year).includes(query) ||
       art.authors.some(a => a.name.toLowerCase().includes(query.toLowerCase()));
 
     const matchesLang = selectedLanguage === 'All' || art.language === selectedLanguage;
@@ -31,7 +33,7 @@ export default function SearchModal({ isOpen, onClose, onSelectArticle }) {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search by title, author name, keyword, or abstract..."
+            placeholder="Search by title, journal, author or year..."
             className="w-full bg-slate-900/80 border border-slate-700 text-white placeholder-slate-400 text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
             autoFocus
           />
@@ -50,7 +52,7 @@ export default function SearchModal({ isOpen, onClose, onSelectArticle }) {
           <div className="flex items-center gap-2">
             <Filter className="w-3.5 h-3.5 text-slate-400" />
             <span className="text-slate-500 font-medium">Filter:</span>
-            {['All', 'English', 'Arabic', 'Urdu'].map(lang => (
+            {['All', ...['English', 'Urdu', 'Arabic'].filter(l => articles.some(a => a.language === l))].map(lang => (
               <button
                 key={lang}
                 type="button"
@@ -75,7 +77,7 @@ export default function SearchModal({ isOpen, onClose, onSelectArticle }) {
             <div className="text-center py-12 text-slate-400 space-y-2">
               <Search className="w-10 h-10 mx-auto text-slate-300" />
               <p className="font-semibold text-sm text-slate-600">No research articles match your search criteria.</p>
-              <p className="text-xs text-slate-400">Try keywords like "Emotional Intelligence", "حقوق", or "فقه".</p>
+              <p className="text-xs text-slate-400">Try keywords like "Seerah", "Tanazur", "تفسیر" or "2024".</p>
             </div>
           ) : (
             filteredArticles.map(article => (
@@ -89,14 +91,23 @@ export default function SearchModal({ isOpen, onClose, onSelectArticle }) {
               >
                 <div className="flex justify-between items-center text-xs">
                   <span className="font-bold text-amber-700 uppercase tracking-wider text-[11px]">{article.section} Section</span>
-                  <span className="text-slate-400 text-[11px]">pp. {article.pages}</span>
+                  <span className="text-slate-400 text-[11px]">{article.journal} • {article.year}</span>
                 </div>
-                <h4 className="font-bold text-slate-900 text-sm hover:text-journal-navy transition-colors">
+                <h4 
+                  className={`font-bold text-slate-900 hover:text-journal-navy transition-colors ${
+                    article.language === 'Urdu' 
+                      ? 'font-urdu text-lg leading-[2] text-right' 
+                      : article.language === 'Arabic' 
+                      ? 'font-arabic text-base text-right' 
+                      : 'text-sm'
+                  }`}
+                  dir={article.language === 'Urdu' || article.language === 'Arabic' ? 'rtl' : 'ltr'}
+                >
                   {article.title}
                 </h4>
-                <p className="text-xs text-slate-500 flex items-center gap-1.5 pt-0.5">
-                  <User className="w-3.5 h-3.5 text-slate-400" />
-                  <span>{article.authors.map(a => a.name).join(', ')}</span>
+                <p className={`text-xs text-slate-500 flex items-center gap-1.5 pt-0.5 ${article.language === 'Urdu' ? 'justify-end font-urdu text-sm' : ''}`} dir={article.language === 'Urdu' || article.language === 'Arabic' ? 'rtl' : 'ltr'}>
+                  <User className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                  <span>{article.authors.map(a => a.name).join('، ')}</span>
                 </p>
               </div>
             ))

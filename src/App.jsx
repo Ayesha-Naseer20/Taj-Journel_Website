@@ -10,6 +10,7 @@ import AboutPage from './pages/AboutPage';
 import EditorialBoardPage from './pages/EditorialBoardPage';
 import AimScopePage from './pages/AimScopePage';
 import IssuesPage from './pages/IssuesPage';
+import CurrentIssuePage from './pages/CurrentIssuePage';
 import IndexedInPage from './pages/IndexedInPage';
 import AuthorGuidelinesPage from './pages/AuthorGuidelinesPage';
 import SubmissionsPage from './pages/SubmissionsPage';
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/editorial-board" element={<EditorialBoardPage />} />
           <Route path="/aim-and-scope" element={<AimScopePage />} />
+          <Route path="/current-issue" element={<CurrentIssuePage onSelectArticle={setSelectedArticle} />} />
           <Route path="/issues" element={<IssuesPage onSelectArticle={setSelectedArticle} />} />
           <Route path="/indexed-in" element={<IndexedInPage />} />
           <Route path="/author-guidelines" element={<AuthorGuidelinesPage />} />

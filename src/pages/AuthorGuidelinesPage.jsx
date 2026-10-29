@@ -29,7 +29,7 @@ export default function AuthorGuidelinesPage() {
                   Author Guidelines & Manuscript Formatting
                 </h1>
                 <p className="text-xs text-slate-500 mt-1">
-                  Comprehensive instructions for preparing research papers for submission to Al-Basirah.
+                  Comprehensive instructions for preparing research papers for submission to Taj Journal of Religion and Psychology (TJRP).
                 </p>
               </div>
 

@@ -46,7 +46,7 @@ export default {
         sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
         academic: ['"Playfair Display"', 'Amiri', 'Georgia', 'serif'],
         arabic: ['Amiri', '"Noto Naskh Arabic"', '"Traditional Arabic"', 'Scheherazade', 'serif'],
-        urdu: ['"Noto Nastaliq Urdu"', '"Jameel Noori Nastaleeq"', 'Amiri', 'serif'],
+        urdu: ['"Jameel Noori Nastaleeq"', '"JameelNooriNastaliq"', '"Noto Nastaliq Urdu"', 'Amiri', 'serif'],
         display: ['"Playfair Display"', 'Amiri', 'Merriweather', 'Georgia', 'serif'],
         mono: ['"JetBrains Mono"', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
       },

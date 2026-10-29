@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { 
-  FileText, 
-  Eye, 
-  Download, 
   Share2, 
   BookOpen, 
   Quote, 
   Copy, 
-  Check 
+  Check,
+  ExternalLink,
+  Library
 } from 'lucide-react';
 
 /**
@@ -92,14 +91,14 @@ export default function ArticleCard({ article, onSelectArticle }) {
     e.stopPropagation();
     const shareData = {
       title: article.title,
-      text: `${article.title} - Al-Basirah Journal`,
-      url: window.location.href,
+      text: article.journal ? `${article.title} - ${article.journal}` : article.title,
+      url: article.url || window.location.href,
     };
 
     if (navigator.share) {
       navigator.share(shareData).catch(() => {});
     } else if (navigator?.clipboard?.writeText) {
-      navigator.clipboard.writeText(window.location.href);
+      navigator.clipboard.writeText(article.url || window.location.href);
       setShared(true);
       setTimeout(() => setShared(false), 2000);
     }
@@ -123,6 +122,18 @@ export default function ArticleCard({ article, onSelectArticle }) {
             {article.pages && (
               <span className="text-[11px] font-medium text-slate-500 bg-slate-50 px-2 py-0.5 rounded border border-slate-200">
                 pp. {article.pages}
+              </span>
+            )}
+
+            {article.year && (
+              <span className="text-[11px] font-medium text-slate-500 bg-slate-50 px-2 py-0.5 rounded border border-slate-200">
+                {article.year}
+              </span>
+            )}
+
+            {article.hecCategory && (
+              <span className="text-[11px] font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                HEC "{article.hecCategory}" Category
               </span>
             )}
           </div>
@@ -154,7 +165,7 @@ export default function ArticleCard({ article, onSelectArticle }) {
             isArabic
               ? 'font-arabic text-2xl md:text-[26px] leading-[1.7] text-right'
               : isUrdu
-              ? 'font-urdu text-2xl md:text-[26px] leading-[1.85] text-right'
+              ? 'font-urdu text-2xl md:text-[28px] leading-[2.1] text-right'
               : 'font-serif text-lg md:text-xl leading-snug tracking-tight text-left'
           }`}
           dir={isRTL ? 'rtl' : 'ltr'}
@@ -189,7 +200,9 @@ export default function ArticleCard({ article, onSelectArticle }) {
               >
                 {getAuthorInitials(auth.name)}
               </span>
-              <span className="font-semibold text-slate-800 text-xs">{auth.name}</span>
+              <span className={`font-semibold text-slate-800 ${isUrdu ? 'font-urdu text-sm' : 'text-xs'}`}>
+                {auth.name}
+              </span>
             </div>
           ))}
         </div>
@@ -197,7 +210,7 @@ export default function ArticleCard({ article, onSelectArticle }) {
         {/* Primary Author Affiliation */}
         {article.authors?.[0]?.affiliation && (
           <p
-            className={`text-[11px] text-slate-400 mb-3 truncate ${isRTL ? 'text-right' : 'text-left'}`}
+            className={`text-[11px] text-slate-400 mb-3 truncate ${isRTL ? 'text-right' : 'text-left'} ${isUrdu ? 'font-urdu text-xs' : ''}`}
             dir={isRTL ? 'rtl' : 'ltr'}
           >
             {article.authors[0].affiliation}
@@ -213,7 +226,7 @@ export default function ArticleCard({ article, onSelectArticle }) {
             {article.keywords.slice(0, 4).map((keyword, idx) => (
               <span
                 key={idx}
-                className={`text-[11px] px-2 py-0.5 rounded-md border font-medium ${theme.tagBg}`}
+                className={`text-[11px] px-2 py-0.5 rounded-md border font-medium ${theme.tagBg} ${isUrdu ? 'font-urdu text-xs' : ''}`}
               >
                 #{keyword}
               </span>
@@ -221,11 +234,25 @@ export default function ArticleCard({ article, onSelectArticle }) {
           </div>
         )}
 
+        {/* Where the paper was published */}
+        {article.journal && (
+          <div className="flex items-start gap-2 mb-3.5 p-2.5 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600" dir="ltr">
+            <Library className="w-4 h-4 text-journal-primary shrink-0 mt-px" />
+            <p className="leading-relaxed">
+              <span className="font-semibold text-slate-500">Published in: </span>
+              <strong className="text-slate-800">{article.journal}</strong>
+              {article.volume != null && <span>, Vol. {article.volume}</span>}
+              {article.issue != null && <span>, No. {article.issue}</span>}
+              {article.year && <span> ({article.year})</span>}
+            </p>
+          </div>
+        )}
+
         {/* Abstract Preview */}
         {article.abstract && (
           <div
             onClick={() => onSelectArticle?.(article)}
-            className="relative max-h-20 overflow-hidden mb-4 cursor-pointer"
+            className="relative max-h-24 overflow-hidden mb-4 cursor-pointer"
             title="Click to view full abstract"
           >
             <p
@@ -233,7 +260,7 @@ export default function ArticleCard({ article, onSelectArticle }) {
                 isArabic
                   ? 'font-arabic text-right text-base leading-relaxed'
                   : isUrdu
-                  ? 'font-urdu text-right text-base leading-relaxed'
+                  ? 'font-urdu text-right text-lg leading-[2.1]'
                   : 'text-left'
               }`}
               dir={isRTL ? 'rtl' : 'ltr'}
@@ -248,23 +275,16 @@ export default function ArticleCard({ article, onSelectArticle }) {
       {/* Footer Actions */}
       <div className="flex flex-wrap items-center justify-between gap-3 pt-3.5 border-t border-slate-100 text-xs mt-auto">
         
-        {/* Engagement Metrics */}
-        <div className="flex items-center gap-3 text-slate-400">
-          <span className="flex items-center gap-1 font-medium text-xs">
-            <Eye className="w-3.5 h-3.5 text-slate-400" />
-            <span>{article.views?.toLocaleString?.() || article.views || 0}</span>
-          </span>
-          <span className="flex items-center gap-1 font-medium text-xs">
-            <Download className="w-3.5 h-3.5 text-slate-400" />
-            <span>{article.downloads?.toLocaleString?.() || article.downloads || 0}</span>
-          </span>
-        </div>
+        {/* Language */}
+        <span className="text-[11px] font-medium text-slate-400">
+          {article.language} Language Paper
+        </span>
 
         {/* Action Buttons */}
         <div className="flex items-center gap-1.5">
           <button
             type="button"
-            onClick={() => onSelectArticle?.(article)}
+            onClick={() => onSelectArticle?.({ ...article, _openTab: 'cite' })}
             className="px-2.5 py-1.5 rounded-md bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 font-medium text-xs transition-colors flex items-center gap-1"
           >
             <Quote className="w-3.5 h-3.5 text-slate-500" />
@@ -277,7 +297,7 @@ export default function ArticleCard({ article, onSelectArticle }) {
             className="px-2.5 py-1.5 rounded-md bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 font-medium text-xs transition-colors flex items-center gap-1"
           >
             <BookOpen className="w-3.5 h-3.5 text-slate-500" />
-            <span>Abstract</span>
+            <span>Details</span>
           </button>
 
           <button
@@ -293,14 +313,17 @@ export default function ArticleCard({ article, onSelectArticle }) {
             {shared ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Share2 className="w-3.5 h-3.5" />}
           </button>
 
-          <button
-            type="button"
-            onClick={() => onSelectArticle?.(article)}
-            className="px-3 py-1.5 rounded-md bg-journal-navy hover:bg-journal-primary text-white font-bold text-xs shadow-xs transition-colors flex items-center gap-1.5"
-          >
-            <FileText className="w-3.5 h-3.5 text-amber-400" />
-            <span>PDF</span>
-          </button>
+          {article.url && (
+            <a
+              href={article.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 rounded-md bg-journal-navy hover:bg-journal-primary text-white font-bold text-xs shadow-xs transition-colors flex items-center gap-1.5"
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-amber-400" />
+              <span>Read Paper</span>
+            </a>
+          )}
         </div>
 
       </div>

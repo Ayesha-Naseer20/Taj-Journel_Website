@@ -8,16 +8,8 @@ import {
 import { journalDetails } from '../data/journalData';
 
 export default function Sidebar() {
-  const [copiedBank, setCopiedBank] = useState(false);
   const [activeFeeTab, setActiveFeeTab] = useState('inland');
 
-  const handleCopyBank = () => {
-    navigator.clipboard.writeText(
-      `Account Title: ${journalDetails.bankAccount.title}\nAccount No: ${journalDetails.bankAccount.accountNo}\nBank: ${journalDetails.bankAccount.bankName}\nBranch: ${journalDetails.bankAccount.branch}\nIBAN: ${journalDetails.bankAccount.iban}`
-    );
-    setCopiedBank(true);
-    setTimeout(() => setCopiedBank(false), 2200);
-  };
 
   return (
     <aside className="space-y-5 font-sans">
@@ -25,22 +17,27 @@ export default function Sidebar() {
       {/* 1. HEC Category Accreditation Widget */}
       <div className="bg-[#0b2239] text-white rounded-xl p-5 border border-amber-500/20 shadow-xs relative overflow-hidden">
         <div className="flex items-center gap-3.5 mb-3">
-          <div className="w-12 h-12 rounded-lg bg-amber-500/10 border border-amber-400/30 flex items-center justify-center shrink-0">
-            <Award className="w-6 h-6 text-amber-400" />
+          <div className="w-14 h-14 rounded-lg bg-white p-1 border border-amber-400/30 flex items-center justify-center shrink-0 shadow-xs">
+            <img 
+              src="/images/hec-logo.png" 
+              alt="HEC Logo" 
+              className="w-full h-full object-contain"
+            />
           </div>
           <div>
             <span className="text-[11px] uppercase tracking-wider font-bold text-amber-400">HEC Recognition</span>
-            <h3 className="font-extrabold text-lg text-white leading-tight">Category 'Y'</h3>
+            <h3 className="font-extrabold text-lg text-white leading-tight">In Process</h3>
+            <span className="text-[10px] text-slate-300">Higher Education Commission</span>
           </div>
         </div>
         <p className="text-xs text-slate-300 leading-relaxed mb-4">
-          Recognized by the Higher Education Commission (HEC) Pakistan for quality academic research standards.
+          Application for recognition by the Higher Education Commission (HEC) Pakistan is currently in process.
         </p>
         <div className="flex items-center justify-between text-xs font-semibold text-slate-200 bg-slate-900/60 rounded-lg p-2.5 border border-white/5">
           <span className="text-[11px] text-slate-400">Verification Status</span>
-          <span className="inline-flex items-center gap-1.5 text-emerald-400 text-xs font-bold">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            Verified
+          <span className="inline-flex items-center gap-1.5 text-amber-400 text-xs font-bold">
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+            In Process
           </span>
         </div>
       </div>
@@ -48,29 +45,37 @@ export default function Sidebar() {
       {/* 2. Indexing Badges */}
       <div className="bg-white rounded-xl p-5 border border-slate-200/90 shadow-xs">
         <h3 className="font-bold text-xs text-journal-navy uppercase tracking-wider border-b border-slate-100 pb-2.5 mb-3 flex items-center justify-between">
-          <span>Indexed & Abstracted</span>
-          <ShieldCheck className="w-4 h-4 text-emerald-600" />
+          <span>Indexing & Abstracting</span>
+          <span className="px-1.5 py-0.5 text-[9px] font-bold bg-amber-100 text-amber-800 rounded normal-case tracking-normal">In Process</span>
         </h3>
         
         {/* DOAJ Featured Card */}
-        <div className="p-3 bg-amber-50/60 border border-amber-200/60 rounded-lg flex items-center justify-between mb-3">
-          <div>
-            <span className="text-[10px] text-amber-800 font-bold uppercase tracking-wider block">Indexed In</span>
-            <p className="font-serif text-2xl font-black text-amber-950 tracking-tight">DOAJ</p>
-            <p className="text-[10px] text-slate-500 font-medium">Directory of Open Access Journals</p>
+        <div className="p-3 bg-white border border-amber-200/80 rounded-lg flex items-center justify-between mb-3 shadow-xs">
+          <div className="flex items-center gap-3">
+            <img 
+              src="/images/doaj-logo.png" 
+              alt="DOAJ Logo" 
+              className="h-10 w-auto object-contain"
+            />
+            <div>
+              <p className="font-serif text-sm font-bold text-slate-900 tracking-tight leading-tight">Directory of Open Access Journals</p>
+              <p className="text-[10px] text-slate-500 font-medium">Application In Process</p>
+            </div>
           </div>
           <div className="flex flex-col items-end gap-1">
-            <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-            <span className="px-2 py-0.5 text-[9px] font-bold bg-emerald-100 text-emerald-800 rounded">Verified</span>
+            <span className="px-1.5 py-0.5 text-[8px] font-bold bg-amber-100 text-amber-800 rounded whitespace-nowrap">In Process</span>
           </div>
         </div>
 
         {/* Other Indexing badges */}
         <div className="grid grid-cols-2 gap-2 text-xs">
           {['Google Scholar', 'Crossref DOI', 'Tehqeeqat', 'BASE Search'].map((idx) => (
-            <div key={idx} className="p-2 border border-slate-200/80 rounded-lg bg-slate-50 font-medium text-slate-700 text-center flex items-center justify-center gap-1.5 text-[11px]">
-              <Globe className="w-3 h-3 text-slate-400" />
-              <span>{idx}</span>
+            <div key={idx} className="p-2 border border-slate-200/80 rounded-lg bg-slate-50 font-medium text-slate-700 text-center flex flex-col items-center justify-center gap-0.5 text-[11px]">
+              <span className="flex items-center gap-1.5">
+                <Globe className="w-3 h-3 text-slate-400" />
+                <span>{idx}</span>
+              </span>
+              <span className="text-[9px] font-bold text-amber-700">In Process</span>
             </div>
           ))}
         </div>
@@ -83,7 +88,7 @@ export default function Sidebar() {
         </span>
         <h3 className="font-serif text-xl font-bold text-slate-900 mb-1.5">Submit Your Manuscript</h3>
         <p className="text-xs text-slate-600 leading-relaxed mb-4">
-          Submit your research paper for the upcoming Vol. 13 No. 2 (December 2024) issue.
+          Submit your research paper for the upcoming issue of TJRP.
         </p>
         <Link
           to="/submissions"
@@ -99,6 +104,7 @@ export default function Sidebar() {
         <h3 className="font-bold text-xs text-journal-navy uppercase tracking-wider border-b border-slate-100 pb-2.5 mb-3 flex items-center gap-2">
           <Activity className="w-4 h-4 text-journal-primary" />
           <span>Journal Information</span>
+          <span className="ml-auto px-1.5 py-0.5 text-[9px] font-bold bg-amber-100 text-amber-800 rounded normal-case tracking-normal">In Process</span>
         </h3>
         <div className="text-xs border border-slate-100 rounded-lg overflow-hidden">
           {[
@@ -107,13 +113,15 @@ export default function Sidebar() {
             { label: 'Research Assistant', value: journalDetails.researchAssistant },
             { label: 'Frequency', value: journalDetails.publicationFrequency, highlight: true },
             { label: 'Full Title', value: journalDetails.title },
-            { label: 'ISSN Online', value: journalDetails.issnOnline },
-            { label: 'ISSN Print', value: journalDetails.issnPrint },
+            { label: 'ISSN Online', value: journalDetails.issnOnline, pending: true },
+            { label: 'ISSN Print', value: journalDetails.issnPrint, pending: true },
+            { label: 'HEC Recognition', value: 'In Process', pending: true },
+            { label: 'Indexing', value: 'In Process', pending: true },
             { label: 'Area', value: 'Islamic Studies & Thought' },
           ].map((item, idx) => (
             <div key={idx} className={`flex justify-between items-center p-2.5 ${idx % 2 === 0 ? 'bg-slate-50/50' : 'bg-white'} border-b border-slate-50 last:border-0`}>
               <span className="text-slate-500 font-medium">{item.label}</span>
-              <span className={`font-semibold text-right max-w-[150px] truncate ${item.highlight ? 'text-journal-primary font-bold' : 'text-slate-800'}`}>
+              <span className={`font-semibold text-right max-w-[150px] truncate ${item.highlight ? 'text-journal-primary font-bold' : item.pending ? 'text-amber-700 font-bold' : 'text-slate-800'}`}>
                 {item.value}
               </span>
             </div>
@@ -196,29 +204,22 @@ export default function Sidebar() {
             <Building className="w-4 h-4" />
             <span>Bank Account</span>
           </h3>
-          <button
-            type="button"
-            onClick={handleCopyBank}
-            className="flex items-center gap-1 text-[10px] uppercase font-bold tracking-wider px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-colors"
-          >
-            {copiedBank ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
-            <span>{copiedBank ? 'Copied' : 'Copy'}</span>
-          </button>
+          <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wider px-2 py-1 rounded bg-slate-800 text-amber-400 border border-slate-700">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+            In Process
+          </span>
         </div>
 
         <div className="space-y-2 text-xs text-slate-300">
-          <div className="bg-slate-900/60 p-2.5 rounded-lg border border-white/5">
-            <span className="text-[10px] text-slate-400 uppercase tracking-wider block">Account Title</span>
-            <strong className="text-white font-medium">{journalDetails.bankAccount.title}</strong>
-          </div>
-          <div className="bg-slate-900/60 p-2.5 rounded-lg border border-white/5">
-            <span className="text-[10px] text-slate-400 uppercase tracking-wider block">Account No</span>
-            <strong className="text-amber-400 font-mono text-sm tracking-wide">{journalDetails.bankAccount.accountNo}</strong>
-          </div>
-          <div className="bg-slate-900/60 p-2.5 rounded-lg border border-white/5">
-            <span className="text-[10px] text-slate-400 uppercase tracking-wider block">Bank & Branch</span>
-            <span className="text-slate-200">{journalDetails.bankAccount.bankName}, {journalDetails.bankAccount.branch}</span>
-          </div>
+          {['Account Title', 'Account No', 'Bank & Branch'].map(label => (
+            <div key={label} className="bg-slate-900/60 p-2.5 rounded-lg border border-white/5">
+              <span className="text-[10px] text-slate-400 uppercase tracking-wider block">{label}</span>
+              <strong className="text-amber-400 font-semibold">In Process</strong>
+            </div>
+          ))}
+          <p className="text-[11px] text-slate-400 leading-relaxed pt-1">
+            Bank account details will be shared here once finalized. Please contact the editorial office for payment information.
+          </p>
         </div>
       </div>
 

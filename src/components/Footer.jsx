@@ -13,16 +13,16 @@ export default function Footer() {
           <div className="space-y-3">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-amber-400/20 border border-amber-400/40 flex items-center justify-center">
-                <span className="font-arabic font-bold text-amber-300 text-lg">البصيرة</span>
+                <span className="font-serif font-bold text-amber-300 text-sm">TJRP</span>
               </div>
-              <h3 className="font-serif text-xl font-bold text-white tracking-tight">Al-Basirah</h3>
+              <h3 className="font-serif text-lg font-bold text-white tracking-tight">TJRP Journal</h3>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Bi-Annual International Peer-Reviewed Research Journal published by the Department of Islamic Thought and Culture, National University of Modern Languages (NUML), Islamabad.
+              Taj Journal of Religion and Psychology (TJRP) is an international, peer-reviewed, multidisciplinary research journal published by the Taj Islamic Research Center (TIRC).
             </p>
             <div className="flex items-center gap-2 pt-1 text-xs font-semibold text-amber-400">
               <Award className="w-4 h-4 text-amber-400 shrink-0" />
-              <span>HEC Accredited • Category 'Y'</span>
+              <span>HEC Recognition • In Process</span>
             </div>
           </div>
 
@@ -64,15 +64,15 @@ export default function Footer() {
             <div className="space-y-2.5 text-xs text-slate-400">
               <p className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                <span>Department of Islamic Thought & Culture, NUML, Sector H-9, Islamabad, Pakistan.</span>
+                <span>Taj Islamic Research Center (TIRC), Gujranwala, Pakistan.</span>
               </p>
               <p className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-amber-400 shrink-0" />
-                <span>editor.albasirah@numl.edu.pk</span>
+                <span>editor.tjrp@tirc.org.pk</span>
               </p>
               <p className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-amber-400 shrink-0" />
-                <span>+92 (51) 9265100 Ext. 2210</span>
+                <span>+92 (51) 9265100</span>
               </p>
             </div>
           </div>
@@ -85,12 +85,12 @@ export default function Footer() {
           <div className="space-y-1.5">
             <div className="flex items-center gap-2">
               <span className="px-2 py-0.5 bg-slate-900 rounded border border-slate-800 text-[10px] font-bold text-slate-300">
-                CC BY-NC 4.0
+                CC BY 4.0
               </span>
               <p className="text-slate-300 font-semibold text-xs">Creative Commons Licensing</p>
             </div>
             <p className="text-[11px] leading-relaxed text-slate-400">
-              Al-Basirah is licensed under a <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noreferrer" className="text-amber-400 hover:underline">Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)</a>.
+              TJRP is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer" className="text-amber-400 hover:underline">Creative Commons Attribution 4.0 International License (CC BY 4.0)</a>.
             </p>
           </div>
 
@@ -108,7 +108,7 @@ export default function Footer() {
         </div>
 
         <div className="text-center pt-4 border-t border-slate-900 text-[11px] text-slate-500">
-          © {new Date().getFullYear()} Al-Basirah Research Journal, NUML Islamabad. All rights reserved.
+          © {new Date().getFullYear()} Taj Journal of Religion and Psychology (TJRP), Taj Islamic Research Center (TIRC). All rights reserved.
         </div>
 
       </div>

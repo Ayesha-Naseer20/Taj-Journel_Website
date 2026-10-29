@@ -43,10 +43,10 @@ export default function ContactPage() {
                   Editorial Secretariat
                 </span>
                 <h1 className="font-serif text-3xl font-extrabold text-journal-navy mt-1">
-                  Contact Al-Basirah Editorial Office
+                  Contact TJRP Editorial Office
                 </h1>
                 <p className="text-xs text-slate-500 mt-1">
-                  Department of Islamic Thought & Culture, NUML Islamabad.
+                  Taj Islamic Research Center (TIRC), Gujranwala, Pakistan.
                 </p>
               </div>
 
@@ -55,17 +55,17 @@ export default function ContactPage() {
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
                   <MapPin className="w-5 h-5 text-amber-500 mb-1" />
                   <strong className="block text-slate-800 font-semibold">Address</strong>
-                  <p className="text-slate-600">NUML, Sector H-9, Islamabad, Pakistan</p>
+                  <p className="text-slate-600">Taj Islamic Research Center (TIRC), Gujranwala, Pakistan</p>
                 </div>
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
                   <Mail className="w-5 h-5 text-journal-primary mb-1" />
                   <strong className="block text-slate-800 font-semibold">Official Email</strong>
-                  <p className="text-slate-600">editor.albasirah@numl.edu.pk</p>
+                  <p className="text-slate-600">editor.tjrp@tirc.org.pk</p>
                 </div>
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
                   <Phone className="w-5 h-5 text-emerald-600 mb-1" />
                   <strong className="block text-slate-800 font-semibold">Phone Contact</strong>
-                  <p className="text-slate-600">+92 (51) 9265100 Ext. 2210</p>
+                  <p className="text-slate-600">+92 (51) 9265100</p>
                 </div>
               </div>
 
@@ -74,7 +74,7 @@ export default function ContactPage() {
                 <div className="p-6 rounded-xl bg-emerald-50 border border-emerald-200 text-center space-y-2">
                   <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
                   <h3 className="text-lg font-bold text-emerald-900">Message Sent Successfully!</h3>
-                  <p className="text-xs text-emerald-700">Thank you for contacting Al-Basirah. Our editorial secretary will respond within 24-48 business hours.</p>
+                  <p className="text-xs text-emerald-700">Thank you for contacting TJRP. Our editorial secretariat will respond within 24-48 business hours.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4 pt-2">

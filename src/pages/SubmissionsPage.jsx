@@ -84,10 +84,10 @@ export default function SubmissionsPage() {
                   OJS Manuscript Submission Portal
                 </span>
                 <h1 className="font-serif text-3xl font-extrabold text-journal-navy mt-1">
-                  Submit Paper to Al-Basirah
+                  Submit Paper to TJRP
                 </h1>
                 <p className="text-xs text-slate-500 mt-1">
-                  Double-blind peer-reviewed submission wizard. Submissions welcomed in English, Arabic, and Urdu.
+                  Double-blind peer-reviewed submission wizard for Taj Journal of Religion and Psychology (TJRP).
                 </p>
               </div>
 
@@ -102,7 +102,7 @@ export default function SubmissionsPage() {
                     Use our official Word / LaTeX manuscript formatting templates before submitting.
                   </p>
                   <button 
-                    onClick={() => alert('Downloading Al-Basirah Manuscript Template (.docx)...')}
+                    onClick={() => alert('Downloading TJRP Manuscript Template (.docx)...')}
                     className="px-3 py-1.5 bg-journal-primary text-white text-xs font-bold rounded-lg hover:bg-journal-navy transition-colors inline-block"
                   >
                     Download Template (.docx)
@@ -197,38 +197,53 @@ export default function SubmissionsPage() {
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="block text-xs font-bold text-slate-700">Manuscript Title *</label>
+                        <label className="block text-xs font-bold text-slate-700">
+                          Manuscript Title * {formData.section === 'Urdu' && <span className="text-purple-700 font-urdu font-normal text-xs">(عنوانِ مقالہ)</span>}
+                        </label>
                         <input
                           type="text"
                           name="title"
                           value={formData.title}
                           onChange={handleChange}
-                          placeholder="Full title of your research paper"
-                          className="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-800"
+                          dir={formData.section === 'Urdu' ? 'rtl' : formData.section === 'Arabic' ? 'rtl' : 'ltr'}
+                          placeholder={formData.section === 'Urdu' ? 'اپنے تحقیقی مقالے کا مکمل عنوان درج کریں...' : formData.section === 'Arabic' ? 'عنوان البحث كاملاً...' : 'Full title of your research paper'}
+                          className={`w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 ${
+                            formData.section === 'Urdu' ? 'font-urdu text-lg leading-relaxed' : formData.section === 'Arabic' ? 'font-arabic text-base' : 'text-sm'
+                          }`}
                         />
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="block text-xs font-bold text-slate-700">Abstract (150-250 words) *</label>
+                        <label className="block text-xs font-bold text-slate-700">
+                          Abstract (150-250 words) * {formData.section === 'Urdu' && <span className="text-purple-700 font-urdu font-normal text-xs">(خلاصہ / ملخص)</span>}
+                        </label>
                         <textarea
                           name="abstract"
                           rows={5}
                           value={formData.abstract}
                           onChange={handleChange}
-                          placeholder="Summarize research background, methodology, key findings, and conclusion..."
-                          className="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-800"
+                          dir={formData.section === 'Urdu' ? 'rtl' : formData.section === 'Arabic' ? 'rtl' : 'ltr'}
+                          placeholder={formData.section === 'Urdu' ? 'تحقیقی پس منظر، طریقہ کار، کلیدی نتائج اور حاصلِ بحث کا خلاصہ درج کریں...' : formData.section === 'Arabic' ? 'ملخص البحث...' : 'Summarize research background, methodology, key findings, and conclusion...'}
+                          className={`w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 ${
+                            formData.section === 'Urdu' ? 'font-urdu text-base leading-[2.1]' : formData.section === 'Arabic' ? 'font-arabic text-base' : 'text-sm'
+                          }`}
                         ></textarea>
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="block text-xs font-bold text-slate-700">Keywords (Comma separated)</label>
+                        <label className="block text-xs font-bold text-slate-700">
+                          Keywords (Comma separated) {formData.section === 'Urdu' && <span className="text-purple-700 font-urdu font-normal text-xs">(کلیدی الفاظ)</span>}
+                        </label>
                         <input
                           type="text"
                           name="keywords"
                           value={formData.keywords}
                           onChange={handleChange}
-                          placeholder="e.g. Islamic Law, Tazkiyah, Social Justice, Hermeneutics"
-                          className="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-800"
+                          dir={formData.section === 'Urdu' || formData.section === 'Arabic' ? 'rtl' : 'ltr'}
+                          placeholder={formData.section === 'Urdu' ? 'مثال: اسلامی نفسیات، تزکیہ نفس، معاشرتی عدل' : formData.section === 'Arabic' ? 'مثال: الفقه الإسلامي، الشريعة' : 'e.g. Islamic Law, Tazkiyah, Social Justice, Hermeneutics'}
+                          className={`w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 ${
+                            formData.section === 'Urdu' ? 'font-urdu text-base' : 'text-sm'
+                          }`}
                         />
                       </div>
                     </div>

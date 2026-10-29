@@ -20,26 +20,25 @@ export default function HeroBanner() {
             {/* Accreditation Badge */}
             <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-amber-500/30 text-amber-300 text-xs font-medium shadow-xs">
               <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
-              <span>HEC Recognized Journal • Category 'Y'</span>
+              <span>HEC Recognition • In Process</span>
               <span className="w-1 h-1 rounded-full bg-amber-400/60"></span>
-              <span className="text-slate-200">DOAJ & Crossref Indexed</span>
+              <span className="text-slate-200">Indexing & Abstracting • In Process</span>
             </div>
 
             {/* Title */}
             <div className="space-y-2">
               <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-slate-400 block">
-                Bi-Annual International Research Journal
+                An International, Peer-Reviewed, Multidisciplinary Research Journal
               </span>
               <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white">
-                AL-BASIRAH <span className="font-arabic font-normal text-amber-400 text-4xl sm:text-5xl lg:text-6xl inline-block ml-1">البصيرة</span>
+                TAJ JOURNAL OF <br className="hidden sm:inline" />
+                <span className="text-amber-400">RELIGION & PSYCHOLOGY</span>
               </h1>
             </div>
 
             {/* Description */}
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl font-light">
-              Published by the <strong className="text-white font-medium">Department of Islamic Thought and Culture</strong>, 
-              National University of Modern Languages (NUML), Islamabad. Dedicated to advancing high-impact peer-reviewed 
-              research in Islamic jurisprudence, contemporary thought, comparative religion, and socio-ethical studies in English, Arabic, and Urdu.
+              Published by <strong className="text-white font-medium">Taj Islamic Research Center (TIRC)</strong>. Dedicated to advancing scholarly inquiry into Religion, Islamic Studies, Psychology, and their interdisciplinary connections for human well-being.
             </p>
 
             {/* Metrics Row (4 Cards) */}
@@ -50,11 +49,11 @@ export default function HeroBanner() {
               </div>
               <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-3.5 shadow-xs">
                 <span className="block text-[11px] text-slate-400 uppercase tracking-wider font-medium mb-0.5">Online ISSN</span>
-                <span className="text-xs sm:text-sm font-bold text-slate-100 font-mono">{journalDetails.issnOnline}</span>
+                <span className="text-xs sm:text-sm font-bold text-amber-300">{journalDetails.issnOnline}</span>
               </div>
               <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-3.5 shadow-xs">
                 <span className="block text-[11px] text-slate-400 uppercase tracking-wider font-medium mb-0.5">Print ISSN</span>
-                <span className="text-xs sm:text-sm font-bold text-slate-100 font-mono">{journalDetails.issnPrint}</span>
+                <span className="text-xs sm:text-sm font-bold text-amber-300">{journalDetails.issnPrint}</span>
               </div>
               <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-3.5 shadow-xs">
                 <span className="block text-[11px] text-slate-400 uppercase tracking-wider font-medium mb-0.5">Peer Review</span>
@@ -73,7 +72,7 @@ export default function HeroBanner() {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
-                to="/issues"
+                to="/current-issue"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 hover:text-white font-semibold text-xs sm:text-sm transition-colors"
               >
                 <BookOpen className="w-4 h-4 text-amber-400" />
@@ -90,7 +89,7 @@ export default function HeroBanner() {
               <div className="flex justify-between items-center mb-4">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-                  Latest Issue
+                  Current Issue
                 </span>
                 <span className="text-[11px] text-slate-400 font-medium px-2 py-0.5 bg-slate-800 rounded">
                   {currentIssue.period}
@@ -101,28 +100,28 @@ export default function HeroBanner() {
               <div className="relative aspect-[3/4] w-full rounded-xl overflow-hidden shadow-lg border border-slate-800 bg-slate-950 mb-4 group-hover:border-amber-500/40 transition-colors">
                 <img 
                   src={currentIssue.coverImage} 
-                  alt="Al-Basirah Vol 13 Cover" 
+                  alt="TJRP Current Issue" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
                   <span className="inline-block px-2 py-0.5 text-[10px] font-bold bg-amber-500 text-slate-950 rounded uppercase tracking-wider mb-1.5">
-                    Vol 13 • No 1
+                    {currentIssue.year}
                   </span>
                   <p className="text-xs font-semibold leading-tight text-white/95">
-                    Al-Basirah Vol. 13, Issue 1 (2024)
+                    {currentIssue.title}
                   </p>
                   <p className="text-[11px] text-amber-200/80 mt-0.5">
-                    Published: {currentIssue.publishedDate}
+                    {currentIssue.count} research papers in HEC-recognized journals
                   </p>
                 </div>
               </div>
 
               <Link 
-                to="/issues#current"
+                to="/current-issue"
                 className="w-full py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-amber-500/40 text-amber-300 font-semibold text-xs text-center block transition-colors"
               >
-                View Table of Contents (8 Articles)
+                View Current Issue ({currentIssue.count} Papers)
               </Link>
 
             </div>
