@@ -25,7 +25,7 @@ function ArchiveRow({ article, onSelectArticle }) {
       <h4
         onClick={() => onSelectArticle?.(article)}
         className={`font-bold text-journal-navy hover:text-journal-primary cursor-pointer transition-colors ${
-          isRTL ? 'font-urdu text-xl leading-[2] text-right' : 'font-serif text-base leading-snug'
+          isRTL ? 'font-urdu text-lg sm:text-xl leading-[2] text-right' : 'font-serif text-base leading-snug'
         }`}
         dir={isRTL ? 'rtl' : 'ltr'}
       >
@@ -68,11 +68,11 @@ export default function IssuesPage({ onSelectArticle }) {
   const newest = archivesList[0]?.year;
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans py-10">
+    <div className="min-h-screen bg-slate-50 font-sans py-6 sm:py-10">
       <div className="max-w-7xl mx-auto px-4">
 
         {/* Breadcrumb */}
-        <div className="text-xs text-slate-500 mb-6 flex items-center gap-1.5 font-medium">
+        <div className="text-xs text-slate-500 mb-4 sm:mb-6 flex items-center gap-1.5 font-medium">
           <Link to="/" className="hover:text-journal-navy">Home</Link>
           <span>/</span>
           <span className="text-slate-800 font-semibold">Issues & Archives</span>
@@ -83,13 +83,13 @@ export default function IssuesPage({ onSelectArticle }) {
           <main className="lg:col-span-8 space-y-8">
 
             {/* Page header */}
-            <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-academic space-y-5">
+            <div className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-slate-200 shadow-academic space-y-5">
               <div>
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[10px] font-bold bg-amber-500 text-slate-950 rounded uppercase">
                   <Archive className="w-3 h-3" />
                   Issues & Archives
                 </span>
-                <h1 className="font-serif text-3xl font-extrabold text-journal-navy mt-1">
+                <h1 className="font-serif text-2xl sm:text-3xl font-extrabold text-journal-navy mt-1">
                   Research Archive ({oldest} – {newest})
                 </h1>
                 <p className="text-xs text-slate-500 mt-1">
@@ -139,7 +139,7 @@ export default function IssuesPage({ onSelectArticle }) {
               <section
                 key={arc.year}
                 id={`year-${arc.year}`}
-                className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-academic space-y-4 scroll-mt-28"
+                className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-slate-200 shadow-academic space-y-4 scroll-mt-28"
               >
                 <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                   <h2 className="font-serif text-2xl font-extrabold text-journal-navy flex items-center gap-2">

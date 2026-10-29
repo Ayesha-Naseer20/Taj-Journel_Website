@@ -241,7 +241,7 @@ export default function HomePage({ onSelectArticle }) {
           <main className="lg:col-span-8 space-y-10">
             
             {/* ─── ABOUT THE JOURNAL SECTION ─── */}
-            <section className="bg-white rounded-2xl p-6 sm:p-8 md:p-10 border border-slate-200/90 shadow-academic space-y-8">
+            <section className="bg-white rounded-2xl p-4 sm:p-8 md:p-10 border border-slate-200/90 shadow-academic space-y-8">
               <div className="space-y-6">
                 
                 {/* Section Header */}
@@ -458,7 +458,7 @@ export default function HomePage({ onSelectArticle }) {
             </section>
 
             {/* ─── CURRENT ISSUE SHOWCASE ─── */}
-            <section className="bg-white rounded-2xl p-6 sm:p-8 md:p-10 border border-slate-200/90 shadow-academic space-y-8">
+            <section className="bg-white rounded-2xl p-4 sm:p-8 md:p-10 border border-slate-200/90 shadow-academic space-y-8">
               
               {/* Header */}
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 border-b border-slate-100 pb-5">
@@ -580,7 +580,7 @@ export default function HomePage({ onSelectArticle }) {
 
           {/* Right Sidebar Column (4 cols) */}
           <div className="lg:col-span-4">
-            <div className="sticky top-16">
+            <div className="lg:sticky lg:top-24">
               <Sidebar />
             </div>
           </div>

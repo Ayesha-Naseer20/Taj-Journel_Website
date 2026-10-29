@@ -106,7 +106,7 @@ export default function ArticleCard({ article, onSelectArticle }) {
 
   return (
     <article
-      className={`bg-white rounded-xl border border-slate-200/90 border-l-4 ${theme.accentBorder} p-5 md:p-6 shadow-xs hover:shadow-academic-hover transition-all duration-200 flex flex-col justify-between`}
+      className={`bg-white rounded-xl border border-slate-200/90 border-l-4 ${theme.accentBorder} p-4 sm:p-5 md:p-6 shadow-xs hover:shadow-academic-hover transition-all duration-200 flex flex-col justify-between`}
     >
       <div>
         {/* Top Header: Section badge, Page numbers, and Copyable DOI */}
@@ -165,7 +165,7 @@ export default function ArticleCard({ article, onSelectArticle }) {
             isArabic
               ? 'font-arabic text-2xl md:text-[26px] leading-[1.7] text-right'
               : isUrdu
-              ? 'font-urdu text-2xl md:text-[28px] leading-[2.1] text-right'
+              ? 'font-urdu text-xl sm:text-2xl md:text-[28px] leading-[2] sm:leading-[2.1] text-right'
               : 'font-serif text-lg md:text-xl leading-snug tracking-tight text-left'
           }`}
           dir={isRTL ? 'rtl' : 'ltr'}
@@ -200,7 +200,7 @@ export default function ArticleCard({ article, onSelectArticle }) {
               >
                 {getAuthorInitials(auth.name)}
               </span>
-              <span className={`font-semibold text-slate-800 ${isUrdu ? 'font-urdu text-sm' : 'text-xs'}`}>
+              <span className={`font-semibold text-slate-800 ${/[\u0600-\u06FF]/.test(auth.name) ? 'font-urdu text-sm' : 'text-xs font-sans'}`}>
                 {auth.name}
               </span>
             </div>
@@ -210,8 +210,8 @@ export default function ArticleCard({ article, onSelectArticle }) {
         {/* Primary Author Affiliation */}
         {article.authors?.[0]?.affiliation && (
           <p
-            className={`text-[11px] text-slate-400 mb-3 truncate ${isRTL ? 'text-right' : 'text-left'} ${isUrdu ? 'font-urdu text-xs' : ''}`}
-            dir={isRTL ? 'rtl' : 'ltr'}
+            className={`text-[11px] text-slate-400 mb-3 truncate font-sans ${isRTL ? 'sm:text-right' : 'text-left'}`}
+            dir="ltr"
           >
             {article.authors[0].affiliation}
           </p>
@@ -276,25 +276,25 @@ export default function ArticleCard({ article, onSelectArticle }) {
       <div className="flex flex-wrap items-center justify-between gap-3 pt-3.5 border-t border-slate-100 text-xs mt-auto">
         
         {/* Language */}
-        <span className="text-[11px] font-medium text-slate-400">
+        <span className="hidden sm:inline text-[11px] font-medium text-slate-400">
           {article.language} Language Paper
         </span>
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5 w-full sm:w-auto">
           <button
             type="button"
             onClick={() => onSelectArticle?.({ ...article, _openTab: 'cite' })}
-            className="px-2.5 py-1.5 rounded-md bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 font-medium text-xs transition-colors flex items-center gap-1"
+            className="px-2.5 py-1.5 rounded-md bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 font-medium text-xs transition-colors flex items-center gap-1 whitespace-nowrap"
           >
             <Quote className="w-3.5 h-3.5 text-slate-500" />
-            <span className="hidden sm:inline">Cite</span>
+            <span>Cite</span>
           </button>
 
           <button
             type="button"
             onClick={() => onSelectArticle?.(article)}
-            className="px-2.5 py-1.5 rounded-md bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 font-medium text-xs transition-colors flex items-center gap-1"
+            className="px-2.5 py-1.5 rounded-md bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 font-medium text-xs transition-colors flex items-center gap-1 whitespace-nowrap"
           >
             <BookOpen className="w-3.5 h-3.5 text-slate-500" />
             <span>Details</span>
@@ -318,7 +318,7 @@ export default function ArticleCard({ article, onSelectArticle }) {
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3 py-1.5 rounded-md bg-journal-navy hover:bg-journal-primary text-white font-bold text-xs shadow-xs transition-colors flex items-center gap-1.5"
+              className="ml-auto sm:ml-0 px-3 py-1.5 rounded-md bg-journal-navy hover:bg-journal-primary text-white font-bold text-xs shadow-xs transition-colors flex items-center gap-1.5 whitespace-nowrap"
             >
               <ExternalLink className="w-3.5 h-3.5 text-amber-400" />
               <span>Read Paper</span>

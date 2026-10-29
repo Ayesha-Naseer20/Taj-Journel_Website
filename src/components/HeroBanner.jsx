@@ -18,11 +18,11 @@ export default function HeroBanner() {
           <div className="lg:col-span-8 space-y-6">
             
             {/* Accreditation Badge */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-amber-500/30 text-amber-300 text-xs font-medium shadow-xs">
+            <div className="inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 px-3.5 py-1.5 rounded-2xl sm:rounded-full bg-slate-900/80 border border-amber-500/30 text-amber-300 text-[11px] sm:text-xs font-medium shadow-xs">
               <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
-              <span>HEC Recognition • In Process</span>
+              <span className="whitespace-nowrap">HEC Recognition • In Process</span>
               <span className="w-1 h-1 rounded-full bg-amber-400/60"></span>
-              <span className="text-slate-200">Indexing & Abstracting • In Process</span>
+              <span className="text-slate-200 whitespace-nowrap">Indexing & Abstracting • In Process</span>
             </div>
 
             {/* Title */}
